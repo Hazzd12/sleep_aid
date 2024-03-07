@@ -1,0 +1,102 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and task definitions.
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# macOS related
+**/.DS_Store
+**/.Trashes
+**/.Spotlight-V100
+**/.TemporaryItems
+**/.fseventsd
+**/Icon?
+**/._*
+**/.DocumentRevisions-V100
+**/.Trash-*
+*.app/
+
+# Windows related
+**/Thumbs.db
+**/ehthumbs.db
+**/Desktop.ini
+
+# Linux related
+**/.directory
+**/nfsShare
+**/.Trash-*
+
+# Android related
+**/build/
+**/captures/
+*.jks
+*.keystore
+**/*.jks
+**/*.keystore
+
+# iOS related
+**/ios/.symlinks/
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/GeneratedPluginRegistrant.*
+**/ios/Flutter/podhelper.rb
+**/ios/.generated/
+**/ios/Flutter/.generated_plugins_registrant.h
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/engine/
+**/ios/Flutter/.flutter-plugins-dependencies
+**/ios/Flutter/.flutter-plugins
+**/ios/ServiceDefinitions.json
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Runner.xcworkspace/contents.xcworkspacedata
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/ios/Pods/
+**/.symlinks/
+**/ios/Flutter/flutter_export_environment.sh
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+*.xccheckout
+*.xcscmblueprint
+xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# VS Code related
+.vscode/
