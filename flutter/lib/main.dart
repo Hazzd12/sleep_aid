@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_aid/pages/Connected.dart';
+import 'package:sleep_aid/pages/test.dart';
+import 'package:sleep_aid/util/CustomizedUtils.dart';
+import 'package:sleep_aid/util/globalVar.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'pages/home.dart';
-import 'package:flutter/material.dart';
+import 'pages/monitoring.dart';
 import 'dart:async';
 
 void main() {
@@ -14,11 +18,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {
-        '/': (context) => VideoSplashScreen(),
-        '/second': (context) => BluetoothPage(),
-      },
+        // Remove the `routes` map
+        initialRoute: '/',
+        onGenerateRoute: (settings)
+    {
+      // Check the name of the route
+      switch (settings.name) {
+        case '/':
+          return MaterialPageRoute(builder: (_) => VideoSplashScreen());
+        case '/home':
+          return MaterialPageRoute(builder: (_) => BluetoothPage());
+        case '/connected':
+          return MaterialPageRoute(builder: (_) => ConnectedPage());
+        case '/monitor':
+          return MaterialPageRoute(builder: (_) => MonitoringPage());
+      }
+    }
     );
   }
 }
@@ -32,6 +47,8 @@ class _VideoSplashScreenState extends State<VideoSplashScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
 
+  int i = 995;
+
   @override
   void initState() {
     super.initState();
@@ -44,13 +61,18 @@ class _VideoSplashScreenState extends State<VideoSplashScreen> {
     _initializeVideoPlayerFuture.then((_) {
       _controller.play();
       // 检查视频是否已结束，并在适当时进行跳转
-      _controller.addListener(() {
+      _controller.addListener(() async {
         if (_controller.value.position >= _controller.value.duration
             && !_controller.value.isPlaying) {
-          // 视频播放结束后，等待5秒
-          Future.delayed(Duration(seconds: 1), () {
-            Navigator.pushNamed(context, '/second'); // 跳转到另一个页面
-          });
+            rr += i.toString();
+            i++;
+            await _checkBluetooth(this);
+            if(isConnected) {
+              Navigator.pushNamed(context, '/connected');
+            }
+            else{
+              Navigator.pushNamed(context, '/home');
+            }
         }
       });
     });
@@ -85,5 +107,17 @@ class _VideoSplashScreenState extends State<VideoSplashScreen> {
       },
     );
   }
+
+  Future<void> _checkBluetooth(State state) async {
+    if(await checkBluetoothConnection(state)) {
+      setState(() {
+        isConnected = true;
+      });
+    }
+  }
+
+
+
 }
+
 
