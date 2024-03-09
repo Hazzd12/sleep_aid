@@ -1,0 +1,18 @@
+
+nano pinout
+https://forum.arduino.cc/t/basic-question-about-gpio-pins-on-nano/959828/3
+
+Player code:
+https://educ8s.tv/arduino-mp3-player/#google_vignette
+
+software serial pins:
+https://docs.arduino.cc/learn/built-in-libraries/software-serial/
+
+potentiometer
+https://forum.arduino.cc/t/dfplayer-mini-volume-control-with-potentiometer/630524
+
+
+sounds:
+https://www.freesoundslibrary.com/morning-birds-singing/
+https://www.freesoundslibrary.com/thunder-wind-and-rain-sound-effect/
+https://www.freesoundslibrary.com/ocean-waves-crashing-sound/
