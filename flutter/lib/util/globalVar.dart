@@ -26,7 +26,7 @@ bool isRunning = false;
 bool isConnecting = false;
 bool isReport = false;
 
-List<String> realTime = ['IN','NOBODY','AWAKE',''];
+List<String> realTime = ['IN','NORMAL','AWAKE',''];
 List<String> report = ['','0','0','0','0','0','0',''];
 
 

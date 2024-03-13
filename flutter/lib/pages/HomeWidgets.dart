@@ -136,7 +136,7 @@ Widget ConnectedMonitoringWidget(
                   ),
                   mySpace(10),
                   Row(
-                    children: [Icon(Icons.people, size:30, color: Colors.white,),
+                    children: [Icon(Icons.face, size:30, color: Colors.white,),
                       CustomizedText(':   ', font_color: Colors.white),
                       CustomizedText(' ${realTime[1]}')],
                   ),
@@ -264,9 +264,10 @@ Widget DisconnectedMonitoringWidget(
 }
 
 Future<void> startMonitoring() async {
-  Uint8List dataToSend = Uint8List.fromList("START!".codeUnits);
+  print("123456");
+  Uint8List dataToSend = Uint8List.fromList("START".codeUnits);
   connection.output.add(dataToSend);
-
+  print(dataToSend);
   await connection.output.allSent;
   isRunning =true;
   amoutBre = 0;
@@ -274,7 +275,7 @@ Future<void> startMonitoring() async {
 }
 
 Future<void> stopMonitoring() async {
-  Uint8List dataToSend = Uint8List.fromList("STOP!".codeUnits);
+  Uint8List dataToSend = Uint8List.fromList("STOP".codeUnits);
   connection.output.add(dataToSend);
   if(count !=0) {
     report[0] = (amoutBre / count).toString();

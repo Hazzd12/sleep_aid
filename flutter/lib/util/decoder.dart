@@ -18,14 +18,14 @@ void realTimeDecoder(String data){
     case "in":
       realTime[0] = "IN";
     break; 
-    case "stop":
-      realTime[1] = "STOP";
+    case "ab":
+      realTime[1] = "ABNORMAL";
       break;
-    case "nobody":
-      realTime[1] ="NOBODY";
+    case "nd":
+      realTime[1] ="NO DETECTION";
       break;
-    case "move":
-      realTime[1] = "MOVE";
+    case "nor":
+      realTime[1] = "NORMAL";
       break;
     case "Awake":
       realTime[2] = "AWAKE";

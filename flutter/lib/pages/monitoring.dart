@@ -23,7 +23,7 @@ class _MonitoringPageState extends State<MonitoringPage> {
     // TODO: implement initState
     super.initState();
     startMonitoringConnection(timer, this);
-    timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) async {
       setState(() {
       });
     });

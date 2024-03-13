@@ -56,10 +56,12 @@ class _ReportPageState extends State<ReportPage> {
 
     //monitorConnection(this);
     Timer periodicTimer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        updateReport();
-        print(pieData[0]);
-      });
+      if (mounted) {
+        setState(() {
+          updateReport();
+          print(pieData[0]);
+        });
+      }
     });
 
     // 创建一个单次延时定时器，在5秒后取消周期性定时器
