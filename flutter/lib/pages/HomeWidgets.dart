@@ -1,10 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:sleep_aid/util/globalVar.dart';
 import '../util/CustomizedUtils.dart';
 import 'dart:async';
 
-List<int> val = [1, 2, 3];
 
 Widget buildConnectedWidget(
     double screenHeight, double screenWidth, State state) {
@@ -26,19 +27,15 @@ Widget buildConnectedWidget(
         mySpace(screenHeight * 0.1),
         ElevatedButton(
           onPressed: () async {
-            if(await startMonitoring()){
-              Navigator.pushNamed(state.context, '/monitor');}
-            else{
-              print('fail to start, please check the device');
-            }
+              await startMonitoring();
+              Navigator.pushNamed(state.context, '/monitor');
           },
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
             padding: EdgeInsets.all(40),
           ),
           child: CustomizedText('START', font_color: Colors.red, font_size: 35),
-        ),
-        CustomizedText(val.toString())
+        )
       ],
     ),
   );
@@ -56,7 +53,8 @@ Widget buildDisconnectedWidget(
               border: Border.all(color: Colors.grey, width: 2.0),
               borderRadius: BorderRadius.circular(5.0),
               color: Colors.white),
-          child: CustomizedText('No Device', font_color: Colors.red),
+          child: isConnecting? CustomizedText('Connecting', font_color: Colors.yellow)
+              :CustomizedText('No Device', font_color: Colors.red),
         ),
         mySpace(screenHeight * 0.1),
         Row(
@@ -64,29 +62,19 @@ Widget buildDisconnectedWidget(
           children: [
             CustomizedText('Click'),
             bluetoothButton(),
-            CustomizedText('to find the device'),
+            CustomizedText('to find'),
             ElevatedButton(
               onPressed: () async {
-                rr += isConnected.toString();
-                checkBluetoothConnection(state);
+                await checkBluetoothConnection(state);
                 if(isConnected){
+                  state.setState(() {});
                   Navigator.popAndPushNamed(state.context, '/connected');
                 }
-                List<BluetoothDevice> list= [];
-                // list = await FlutterBluePlus.systemDevices;
-                // list+=FlutterBluePlus.connectedDevices;
-                // list+=await FlutterBluePlus.bondedDevices;
-                for(BluetoothDevice d in list){
-                  rr += d.platformName.toString();
-                }
-                state.setState(() {
 
-                });
               },
               style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
-                  padding: EdgeInsets.all(
-                      12)), // => AppSettings.openAppSettings(type: AppSettingsType.location),
+                  padding: const EdgeInsets.all(12)), // => AppSettings.openAppSettings(type: AppSettingsType.location),
               child: const Icon(Icons.refresh),
             )
           ],
@@ -127,14 +115,51 @@ Widget ConnectedMonitoringWidget(
               color: Colors.white),
           child: CustomizedText('Device Connected', font_color: Colors.green),
         ),
-        mySpace(screenHeight * 0.1),
+        mySpace(screenHeight * 0.05),
         CustomizedText('Monitoring'),
+        mySpace(screenHeight*0.05),
+        Container(
+            width: 280,
+            height: 180,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 2.0),
+                borderRadius: BorderRadius.circular(5.0),
+                color: Color.fromRGBO(255,255,255,0.2)),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [Icon(Icons.location_on, size:30, color: Colors.white,),
+                      CustomizedText(':   ', font_color: Colors.white),
+                      CustomizedText(' ${realTime[0]}'),],
+                  ),
+                  mySpace(10),
+                  Row(
+                    children: [Icon(Icons.people, size:30, color: Colors.white,),
+                      CustomizedText(':   ', font_color: Colors.white),
+                      CustomizedText(' ${realTime[1]}')],
+                  ),
+                  mySpace(10),
+                  Row(
+                    children: [Icon(Icons.bed, size:30, color: Colors.white,),
+                      CustomizedText(':   ', font_color: Colors.white),
+                      CustomizedText(' ${realTime[2]}'),],
+                  ),
+                  mySpace(10),
+                  Row(
+                    children: [Icon(Icons.air, size:30, color: Colors.white,),
+                      CustomizedText(':   ', font_color: Colors.white),
+                      CustomizedText(' ${realTime[3]}'),],
+                  ),
+                ])),
         mySpace(screenHeight * 0.1),
         ElevatedButton(
           onPressed: () {
             stopMonitoring();
             isRunning = false;
-            Navigator.pop(state.context);
+            isReport = true;
+            Navigator.popAndPushNamed(state.context, '/report');
           },
           style: ElevatedButton.styleFrom(
             shape: CircleBorder(),
@@ -142,6 +167,7 @@ Widget ConnectedMonitoringWidget(
           ),
           child: CustomizedText('STOP', font_color: Colors.red, font_size: 35),
         ),
+
       ],
     ),
   );
@@ -159,19 +185,65 @@ Widget DisconnectedMonitoringWidget(
               border: Border.all(color: Colors.grey, width: 2.0),
               borderRadius: BorderRadius.circular(5.0),
               color: Colors.white),
-          child: CustomizedText('No Device', font_color: Colors.red),
+          child:  isConnecting? CustomizedText('Connecting', font_color: Colors.yellow):
+          CustomizedText('No Device', font_color: Colors.red),
         ),
-        mySpace(screenHeight * 0.1),
+        mySpace(screenHeight * 0.05),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomizedText('Click'),
             bluetoothButton(),
-            CustomizedText('to find the device'),
+            CustomizedText('to find '),
+            ElevatedButton(
+              onPressed: () async {
+                await checkBluetoothConnection(state);
+                if(isConnected){
+                  state.setState(() {});
+                  Navigator.popAndPushNamed(state.context, '/monitor');
+                }
 
+              },
+              style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                  padding: const EdgeInsets.all(12)), // => AppSettings.openAppSettings(type: AppSettingsType.location),
+              child: const Icon(Icons.refresh),
+            )
           ],
         ),
-        mySpace(screenHeight * 0.1),
+        mySpace(screenHeight * 0.05),
+        Container(
+            width: 280,
+            height: 180,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 2.0),
+                borderRadius: BorderRadius.circular(5.0),
+                color: Color.fromRGBO(255,255,255,0.2)),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [Icon(Icons.location_on, size:30, color: Colors.white,),
+                      CustomizedText(':     ----', font_color: Colors.white),],
+                  ),
+                  mySpace(10),
+                  Row(
+                    children: [Icon(Icons.people, size:30, color: Colors.white,),
+                      CustomizedText(':     ----', font_color: Colors.white),],
+                  ),
+                  mySpace(10),
+                  Row(
+                    children: [Icon(Icons.bed, size:30, color: Colors.white,),
+                      CustomizedText(':     ----', font_color: Colors.white),],
+                  ),
+                  mySpace(10),
+                  Row(
+                    children: [Icon(Icons.air, size:30, color: Colors.white,),
+                      CustomizedText(':     ----', font_color: Colors.white),],
+                  ),
+                ])),
+        mySpace(screenHeight*0.1),
         ElevatedButton(
           onPressed: null, // 按钮禁用
           child: CustomizedText('STOP', font_color: Colors.grey, font_size: 35),
@@ -191,31 +263,27 @@ Widget DisconnectedMonitoringWidget(
   );
 }
 
-Future<bool> startMonitoring() async {
-  // List<int> data = [0x70,0x75,0x73];
-  // print(write.properties.write);
-  // if (write.properties.write) {
-  //   await write.write(data, withoutResponse: false);
-  //   isRunning = true;
-  //     return true;
-  // } else {
-  //   print('No device detected');
-  //   return false;
-  // }
-  isRunning = true;
-  return true;
+Future<void> startMonitoring() async {
+  Uint8List dataToSend = Uint8List.fromList("START!".codeUnits);
+  connection.output.add(dataToSend);
+
+  await connection.output.allSent;
+  isRunning =true;
+  amoutBre = 0;
+  count = 0;
 }
 
 Future<void> stopMonitoring() async {
-  List<int> data =[];
-  if (characteristic != null) {
-    await write?.write(data, withoutResponse: false);
-  } else {
-    print('No device detected');
+  Uint8List dataToSend = Uint8List.fromList("STOP!".codeUnits);
+  connection.output.add(dataToSend);
+  if(count !=0) {
+    report[0] = (amoutBre / count).toString();
   }
-  if (characteristic!.properties.read) {
-    List<int> value = await characteristic!.read();
-    print(value);
-    val = value;
+  else{
+    report[0] ='0';
   }
+// 如果需要，确保调用flush来确保数据被发送
+  await connection.output.allSent;
+  isRunning = false;
+
 }

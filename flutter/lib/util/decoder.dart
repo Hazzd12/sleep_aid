@@ -1,47 +1,85 @@
 
 
-List<int> Decoder(List<int> val){
-  List<int> result = [];
-  if(val[0] == 0) {
-    result.add(0);
-    return result;
+import 'dart:typed_data';
+
+import 'package:flutter/material.dart';
+
+import 'globalVar.dart';
+
+void realTimeDecoder(String data){
+  print("decoder: ${data}");
+
+  print(data.length);
+  print(data == "stop");
+  switch(data){
+    case "leaving":
+      realTime[0] = "AWAY";
+      break;
+    case "in":
+      realTime[0] = "IN";
+    break; 
+    case "stop":
+      realTime[1] = "STOP";
+      break;
+    case "nobody":
+      realTime[1] ="NOBODY";
+      break;
+    case "move":
+      realTime[1] = "MOVE";
+      break;
+    case "Awake":
+      realTime[2] = "AWAKE";
+      break;
+    case "Light":
+      realTime[2] = "LIGHT";
+      break;
+    case "sleep":
+      realTime[2] = "DEEP";
+    default:
+      if(data.isNotEmpty&&data.substring(0, 3) == "r_r"){
+        realTime[3] = data.substring(4);
+        amoutBre += double.parse(data.substring(4));
+        count++;
+      }
+      break;
   }
-  else{
-    result.add(1);
-  }
-  return result;
+  return;
 }
 
 
-List<int> realTimeData(List<int> val){
-  List<int> result = [];
-  if(val[2]==1||val[2]==2) {
-    result.add(val[2]);
+void reportDecoder(String data){
+  print("decoder2: ${data}");
+  switch(data){
+    case "at: ":
+      List<String> parts = data.split('-');
+      String part1 = parts[0];
+      String part2 = parts[1];
+
+      report[1] = part1;
+      report[2] = part2;
+      break;
+    case "lt: ":
+      List<String> parts = data.split('-');
+      String part1 = parts[0];
+      String part2 = parts[1];
+
+      report[3] = part1;
+      report[4] = part2;
+      break;
+    case "dt: ":
+      List<String> parts = data.split('-');
+      String part1 = parts[0];
+      String part2 = parts[1];
+
+      report[5] = part1;
+      report[6] = part2;
+      break;
+    case "s: ":
+      report[7] = data.substring(3);
+      break;
+    default:
+      print("no report");
+      break;
   }
-  else{
-    result[0] = 0;
-    return result;
-  }
-  if(val[3]==1||val[3]==2){
-    result.add(val[3]);
-    return result;
-  }
-  else{
-    result[0] = 0;
-  }
-  if(val[4]>=0&&val[4] <= 3){
-    result.add(val[4]);
-  }
-  else{
-    result[0] = 0;
-    return result;
-  }
-  if(val[5]>=0){
-    result.add(val[5]);
-  }
-  else{
-    result[0] = 0;
-    return result;
-  }
-  return result;
+
 }

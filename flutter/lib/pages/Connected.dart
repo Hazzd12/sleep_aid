@@ -2,10 +2,12 @@
 
 
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:sleep_aid/util/decoder.dart';
 import '../util/CustomizedUtils.dart';
 import '../util/globalVar.dart';
 import 'HomeWidgets.dart';
@@ -19,21 +21,56 @@ class ConnectedPage extends StatefulWidget {
 }
 
 class _ConnectedPageState extends State<ConnectedPage> {
+  Timer? timer;
 
-  String devices1 = '';
-  late BluetoothService localService;
-  BluetoothCharacteristic? localCharacteristic;
-  late final StreamSubscription<BluetoothConnectionState>
-  _deviceStateSubscription;
+  Future<void> setListener() async {
+    subscription = connection.input?.listen((Uint8List data) {
+      // 处理接收到的数据
+      String receivedData = String.fromCharCodes(data);
+      print(receivedData);
+      receivedData = receivedData.replaceAll(RegExp(r'\n|\r'), '');
+      if(isRunning) {
+        if(receivedData.isNotEmpty && receivedData[0] == "2"){
+          String sub = receivedData.substring(1);
+          realTimeDecoder(sub);
+          print("now: ${realTime}");
+        }
+        else if(receivedData.length>=3&&receivedData.substring(0,3) == "r_r:"){
+          realTime[3] = receivedData.substring(4);
+          amoutBre += double.parse(receivedData.substring(4));
+          count++;
+        }
+      }
+      else if(isReport){
+        if(receivedData.isNotEmpty && receivedData[0] == "3"){
+          String sub = receivedData.substring(1);
+          reportDecoder(sub);
+        }
+      }
+    });
+    subscription.onDone(() {print('remotely disconect');});
+  }
 
 
+  void stopMonitoringConnection() {
+    timer?.cancel();
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    monitorConnection();
-    setServiceAndChar(localDevice!);
+    startMonitoringConnection(timer, this);
+    setListener();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    subscription.cancel();
+    connection.dispose();
+
   }
 
   @override
@@ -57,44 +94,19 @@ class _ConnectedPageState extends State<ConnectedPage> {
             ElevatedButton(
               //test Button
               onPressed: () {
+                print(connection!.isConnected);
+                print(localDevice!.name);
                 //isConnected = !isConnected;
                 setState(() {});
-                print('home ${characteristic.properties.notify}');
                // Navigator.pushReplacementNamed(context, '/home');
               },
               child: CustomizedText('test',
                   font_size: 20, font_color: Colors.black),
             ),
-            CustomizedText('1230$rr')
           ])),
     );
   }
 
-  void monitorConnection() {
-    _deviceStateSubscription =
-        localDevice!.connectionState.listen((BluetoothConnectionState state) async {
-          switch (state) {
-            case BluetoothConnectionState.connected:
-              setState(() {
-                isConnected = true;
-              });
-              print("Device Connected");
-              break;
-            case BluetoothConnectionState.disconnected:
-              print("Device Disconnected");
-              isConnected = false;
-              if(!isRunning){
-                print('running $isRunning');
-                Navigator.pushNamed(context, '/home');
-              }
-              break;
-            default:
-              print("1Device Disconnected");
-              setState(() {
-                isConnected = false;
-              });
-              break;
-          }
-        });
-  }
+
+
 }

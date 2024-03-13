@@ -6,38 +6,27 @@ import 'package:sleep_aid/pages/HomeWidgets.dart';
 import '../util/globalVar.dart';
 import '../util/CustomizedUtils.dart';
 
-class MonitoringPage extends StatefulWidget {
-  MonitoringPage({Key? key});
+class DisMonitoringPage extends StatefulWidget {
+  DisMonitoringPage({Key? key});
 
   @override
-  _MonitoringPageState createState() => _MonitoringPageState();
+  _DisMonitoringPageState createState() => _DisMonitoringPageState();
 }
 
-class _MonitoringPageState extends State<MonitoringPage> {
-
-  String information = '';
-  Timer? timer;
-
+class _DisMonitoringPageState extends State<DisMonitoringPage> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    startMonitoringConnection(timer, this);
-    timer = Timer.periodic(Duration(seconds: 3), (timer) async {
-      setState(() {
-      });
-    });
-  }
 
+
+  }
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      /*appBar: AppBar(
-        title: Text("bluetooth test"),
-      ),*/
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -46,17 +35,8 @@ class _MonitoringPageState extends State<MonitoringPage> {
           ),
         ),
         child: Column(children: [
-          ConnectedMonitoringWidget(screenHeight, screenWidth, this),
-          // ElevatedButton(
-          //   //test Button
-          //   onPressed: () async {
-          //     //isConnected = !isConnected;
-          //     setState(() {});
-          //   },
-          //   child:
-          //       CustomizedText('test', font_size: 20, font_color: Colors.black),
-          // ),
-
+          DisconnectedMonitoringWidget(screenHeight, screenWidth, this),
+          mySpace(screenHeight * 0.1),
         ]),
       ),
     );
@@ -66,6 +46,5 @@ class _MonitoringPageState extends State<MonitoringPage> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    timer?.cancel();
   }
 }

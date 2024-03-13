@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:sleep_aid/util/decoder.dart';
 import 'HomeWidgets.dart';
 import '../util/CustomizedUtils.dart';
 import '../util/globalVar.dart';
@@ -51,18 +52,7 @@ class _BluetoothPageState extends State<BluetoothPage> {
           child: Column(children: [
             buildDisconnectedWidget(screenHeight, screenWidth, this),
             mySpace(screenHeight * 0.1),
-            ElevatedButton(
-              //test Button
-              onPressed: () async {
-                setState(() {
-
-                });
-                //Navigator.pushReplacementNamed(context, '/connected');
-              },
-              child: CustomizedText('test',
-                  font_size: 20, font_color: Colors.black),
-            ),
-            CustomizedText('1230 $rr ')
+            //CustomizedText('1230 $rr ')
           ])),
     );
   }
