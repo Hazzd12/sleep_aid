@@ -30,7 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_blue_plus: ^1.31.16
   video_player: 2.7.0
   flutter_bluetooth_serial: ^0.4.0
   syncfusion_flutter_charts: ^24.2.9
