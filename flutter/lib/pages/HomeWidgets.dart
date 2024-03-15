@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:sleep_aid/util/globalVar.dart';
 import '../util/CustomizedUtils.dart';
 import 'dart:async';
@@ -265,7 +264,7 @@ Widget DisconnectedMonitoringWidget(
 
 Future<void> startMonitoring() async {
   print("123456");
-  Uint8List dataToSend = Uint8List.fromList("START".codeUnits);
+  Uint8List dataToSend = Uint8List.fromList("START\n".codeUnits);
   connection.output.add(dataToSend);
   print(dataToSend);
   await connection.output.allSent;
@@ -275,7 +274,7 @@ Future<void> startMonitoring() async {
 }
 
 Future<void> stopMonitoring() async {
-  Uint8List dataToSend = Uint8List.fromList("STOP".codeUnits);
+  Uint8List dataToSend = Uint8List.fromList("STOP\n".codeUnits);
   connection.output.add(dataToSend);
   if(count !=0) {
     report[0] = (amoutBre / count).toString();

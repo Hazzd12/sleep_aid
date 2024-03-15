@@ -59,7 +59,6 @@ class _ReportPageState extends State<ReportPage> {
       if (mounted) {
         setState(() {
           updateReport();
-          print(pieData[0]);
         });
       }
     });

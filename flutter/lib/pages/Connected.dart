@@ -86,18 +86,6 @@ class _ConnectedPageState extends State<ConnectedPage> {
           child: Column(children: [
             buildConnectedWidget(screenHeight, screenWidth, this),
             mySpace(screenHeight * 0.1),
-            ElevatedButton(
-              //test Button
-              onPressed: () {
-                print(connection!.isConnected);
-                print(localDevice!.name);
-                //isConnected = !isConnected;
-                setState(() {});
-               // Navigator.pushReplacementNamed(context, '/home');
-              },
-              child: CustomizedText('test',
-                  font_size: 20, font_color: Colors.black),
-            ),
           ])),
     );
   }

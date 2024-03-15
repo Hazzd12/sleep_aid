@@ -41,7 +41,9 @@ class PieData {
 }
 
 List<PieData> pieData = [
-  PieData('Deep Sleep', 25, 12.1,  Color.fromRGBO(9,0,136,1)),
-  PieData('Light Sleep', 38, 56.2, Color.fromRGBO(147,0,119,1)),
-  PieData('Awake', 34, 30.1, Color.fromRGBO(228,0,124,1))
+  PieData('Deep Sleep', 36.1, 36.1,  Color.fromRGBO(9,0,136,1)),
+  PieData('Light Sleep', 48.2, 48.2, Color.fromRGBO(147,0,119,1)),
+  PieData('Awake', 15.8, 15.8, Color.fromRGBO(228,0,124,1))
 ];
+
+
