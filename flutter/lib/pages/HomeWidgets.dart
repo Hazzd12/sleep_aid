@@ -263,7 +263,6 @@ Widget DisconnectedMonitoringWidget(
 }
 
 Future<void> startMonitoring() async {
-  print("123456");
   Uint8List dataToSend = Uint8List.fromList("START\n".codeUnits);
   connection.output.add(dataToSend);
   print(dataToSend);

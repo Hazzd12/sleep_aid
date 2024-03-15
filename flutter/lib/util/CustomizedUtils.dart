@@ -116,8 +116,9 @@ void startMonitoringConnection(Timer? timer, State state) {
     } else {
       isConnected = false;
     }
+    String? currentPage = ModalRoute.of(state.context)?.settings.name;
 
-    if(!isConnected){
+    if(!isConnected && !(currentPage == '/disMonitor' ||currentPage == '/home')){
       if (isRunning) {
         Navigator.pushNamed(state.context, '/disMonitor');
       } else {

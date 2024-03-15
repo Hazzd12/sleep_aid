@@ -36,7 +36,7 @@ class _ConnectedPageState extends State<ConnectedPage> {
           reportDecoder(sub);
           print("now: ${realTime}");
         }
-        else if(receivedData.length>=3&&receivedData.substring(0,3) == "r_r:"){
+        else if(receivedData.length>=3&&receivedData.substring(0,4) == "r_r:"){
           realTime[3] = receivedData.substring(4);
           amoutBre += double.parse(receivedData.substring(4));
           count++;
