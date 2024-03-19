@@ -14,13 +14,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3     # Checkout the Repository on the Virtual Machine
-      
-      - name: Get list
-        run: ls -la
-        
-      - name: Change to Flutter directory
-        run: cd flutter   
+        uses: actions/checkout@v3     # Checkout the Repository on the Virtual Machine  
         
       - name: Set up JDK              # Setup JAVA to build the Android APK for us
         uses: actions/setup-java@v3
@@ -56,7 +50,9 @@ jobs:
           channel: 'main'
 
       - name: Get Flutter dependencies      # Get the Libraries and Dependencies
-        run: flutter pub get
+        run: |
+          cd ost
+          flutter pub get
 
       - name: Build APK Release             # Build a release
         run: flutter build apk --release
