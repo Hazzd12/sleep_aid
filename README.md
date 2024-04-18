@@ -1,0 +1,34 @@
+Welcome to the repository for Sleep Easy, the  sleep aid device designed to aid how you sleep. Sleep Easy has customisable audio tracks, advanced sensor technology, and a user-friendly app to create the perfect bedtime environment. Dive into a sleep experience that caters to your personal relaxation needs.
+Features
+
+    Custom Audio Uploads: Choose from a range of sounds including audiobooks, music tracks, and biophilic sounds, or upload your own favorites.
+    Advanced Sleep Sensing: Utilises sensor technology to monitor your heartbeat and breathing rates to detect when you fall asleep.
+    Sleep Insights: Gain insights into your sleep patterns and quality through the Sleep Easy app.
+    Sleek 1950s Design: Enjoy a modern device with a vintage twist, designed not only for functionality but also as a stylish addition to your bedroom decor.
+    Sustainability and Repairability: Designed with longevity in mind, Sleep Easy features easily replaceable parts to ensure extended usability.
+
+Getting Started
+
+To get started with Sleep Easy, follow these simple steps:
+
+    Set Up the Device: Place your Sleep Easy device on your bedside table and plug it into a power source.
+    Download the App: Download the Sleep Easy app from the App Store or Google Play to control your device and access sleep analytics.
+    Customize Your Sounds: Use the app to select your preferred sleep sounds or upload your own audio files.
+    Adjust Settings: Customize settings such as volume, sleep sensor sensitivity, and auto shut-off timings to suit your preferences.
+
+Usage
+
+To ensure optimal performance and experience:
+
+    Place the device at a stable position near your bed.
+    Ensure the device is not covered or blocked to allow accurate sensor functioning.
+    Regularly update the app to receive the latest features and improvements.
+
+Troubleshooting
+
+If you encounter any issues:
+
+    Verify that the device is correctly plugged in and powered.
+    Check if the app is up-to-date.
+    Restart the device if it is unresponsive.
+    Consult the FAQ section in the app for quick fixes and guidance.
