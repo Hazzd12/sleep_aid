@@ -14,7 +14,7 @@ To get started with Sleep Easy, follow these simple steps:
     Set Up the Device: Place your Sleep Easy device on your bedside table and plug it into a power source.
     Download the App: Download the Sleep Easy app from the App Store or Google Play to control your device and access sleep analytics.
     Customize Your Sounds: Use the app to select your preferred sleep sounds or upload your own audio files.
-    Adjust Settings: Customize settings such as volume, sleep sensor sensitivity, and auto shut-off timings to suit your preferences.
+    Adjust Settings: Customise settings such as volume, sleep sensor sensitivity, and auto shut-off timings to suit your preferences.
 
 Usage
 
