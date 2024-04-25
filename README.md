@@ -1,10 +1,11 @@
 
 ## ✨🌙 Welcome to the repository for Sleep Easy, the sleep aid device designed to aid in how you sleep.
 
-<div align="center">
-    <img src="/assets/SleepEasy1.jpg" width="200" height="200" alt="The final prototypet">
-</div>
 Sleep Easy has customisable audio tracks, advanced sensor technology, and a user-friendly app to create the perfect bedtime environment. Dive into a sleep experience that caters to your personal relaxation needs.
+
+<div align="center">
+    <img src="/assets/SleepEasy1.jpg" width="350" height="250" alt="The final prototypet">
+</div>
 
 ## ✨🌙 Features:
 
@@ -33,5 +34,8 @@ Place the device in a stable position near your bed.
     Ensure the device is not covered or blocked to allow accurate sensor functioning.
     Regularly update the app to receive the latest features and improvements.
 
+<div align="center">
+    <img src="/assets/SleepEasy2.jpg" width="350" height="250" alt="The final prototypet">
+</div>
 
     
