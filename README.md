@@ -60,7 +60,7 @@ For any inquiries, suggestions, or further information regarding this project, f
 
 ### team member 2
 - **Name**: mark.foster
-- **Email**:mark.foster@live.co.uk
+- **Email**:[ucfnamm@ucl.ak.uk]
 
 ### team member 3
 - **Name**: lianglei.liu
