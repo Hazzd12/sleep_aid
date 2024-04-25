@@ -49,4 +49,27 @@ Place the device in a stable position near your bed.
     <img src="/assets/SleepEasy2.jpg" width="350" height="250" alt="The final prototypet">
 </div>
 
-    
+## Contact Information
+
+For any inquiries, suggestions, or further information regarding this project, feel free to reach out to any of our team members. We value collaboration and feedback!
+
+### team member 1
+- **Name**: sarah.gomez
+- **Email**: [sarah.gomez.22@ucl.ac.uk]
+
+
+### team member 2
+- **Name**: mark.foster
+- **Email**:mark.foster@live.co.uk
+
+### team member 3
+- **Name**: lianglei.liu
+- **Email**: [ucfnll0@ucl.ac.uk]
+
+
+### team member 4
+- **Name**: qikai.hu
+- **Email**: [qikai.hu.23@ucl.ac.uk]
+
+
+We look forward to hearing from you!
