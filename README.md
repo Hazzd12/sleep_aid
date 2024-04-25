@@ -15,7 +15,15 @@ Custom Audio Uploads: Choose from a range of sounds including audiobooks, music 
     Sleek 1950s Design: Enjoy a modern device with a vintage twist, designed not only for functionality but also as a stylish addition to your bedroom decor.
     Sustainability and Repairability: Designed with longevity in mind, Sleep Easy features easily replaceable parts to ensure extended usability.
 
-    
+
+## ✨🌙 Who is Sleep Easy for?:
+
+The inspiration behind Sleep Easy came from wanting to improve sleep quality. For those of us that do not find it easy to get a good night's sleep, Sleep Easy has been created to help.
+
+<a href="https://1drv.ms/v/s!ArII0mnkCPeRmL5UW-90LZcdwgnLzw?e=JKvF8e">
+  <img src="/assets/Thumbnail1.jpg" alt="Link to video" width="300" height="200">
+</a>
+
 
 ## ✨🌙 Getting Started
 
